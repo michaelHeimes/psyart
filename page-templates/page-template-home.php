@@ -7,16 +7,23 @@
 
 get_header(); ?>
 	
-	<div class="content">
+	<div class="content grid-container">
 	
-		<div class="inner-content grid-x grid-margin-x grid-padding-x">
+		<div class="inner-content grid-x grid-padding-x">
 	
 		    <main class="main small-12 large-8 medium-8 cell" role="main">
 			    
-			    <?php echo '<h1><span>' . get_bloginfo( "name" ) . '</span> ' . get_bloginfo( "description" ) .  '</h1>' ;?>
+			    <?php echo '<h1><span><strong>' . get_bloginfo( "name" ) . '</strong></span> ' . get_bloginfo( "description" ) .  '</h1>' ;
+				    $getdate = getdate();
+				    $year = date('Y');
+				    $volume = substr( $year, -2) + 4;
+			    ?>
+			    
+			    <h2 class="current-title">Current: <?php echo 'Volume ' . $volume . ' (' .  $year . ')'?></h2>
+			    
+			    <h2 class="recent-title">Most Recent Article:</h2>
 			    
 			   <?php 
-				   $getdate = getdate();
 				   $args = array(
 				    'posts_per_page' => -1,
 				    'post_type' => 'article',
@@ -41,16 +48,14 @@ get_header(); ?>
 				
 				foreach ($ordered_posts as $post_date => $posts) { 
 					$volume = substr( $post_date, -2) + 4;
-				?>
-				
 
-					        <?php foreach ($posts as $post): ?>
-					        
-								<?php get_template_part( 'parts/loop', 'archive' ); ?>
-					            
-					        <?php endforeach; ?>
+		        foreach ($posts as $post):
+		        
+					get_template_part( 'parts/loop', 'archive' );
+		            
+		        endforeach;
 				    
-				<? }
+				}
 				
 				?>
 			    						

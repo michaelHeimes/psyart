@@ -14,5 +14,13 @@
 		<?php dynamic_sidebar( 'offcanvas' ); ?>
 
 	<?php endif; ?>
+	
+	<div class="form-wrap cell shrink">
+		<form method="get" action="/" _lpchecked="1">
+			<input type="text" name="s" placeholder="Search" class="">
+			<input type="hidden" name="" value="">
+			<button type="submit"><img src="<?php echo get_template_directory_uri(); ?>/assets/images/search.svg" alt="search"></button>
+		</form>
+	</div>
 
 </div>

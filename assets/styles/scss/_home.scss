@@ -1,0 +1,26 @@
+.home {
+	
+	h1 {
+		text-transform: lowercase;
+		margin-bottom: 26px;
+		
+		strong {
+			text-transform: none;
+		}
+		
+	}
+	
+	h2 {
+	
+	&.current-title {
+		margin-bottom: 26px;
+	}
+	
+	&.recent-title {
+    	margin-bottom: 0;
+	}
+	
+	}
+	
+	
+}

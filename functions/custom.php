@@ -51,4 +51,3 @@ function custom_post_author_archive($query) {
     remove_action( 'pre_get_posts', 'custom_post_author_archive' );
 }
 add_action('pre_get_posts', 'custom_post_author_archive'); 
-

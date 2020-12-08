@@ -11,20 +11,30 @@
 	<header class="article-header">	
 		<h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
 		<?php get_template_part( 'parts/content', 'byline' ); ?>
-
-		<?php if($pdf =  get_field('pdf') ): ?>
 		
 			<div class="doc-tabs">
+				
+				<?php if($pdf =  get_field('pdf') ):?>
 				
 				<a href="<?php echo $pdf;?>" target="_blank">
 					PDF
 				</a>
-
+				|
 				<a href="#" type="button" onclick="printJS('<?php echo $pdf;?>')">
 					Print
 			    </a>
+			    |
+			    <?php endif;?>
+			    
+			    <?php 
+				    global $post;
+					$link = get_permalink();
+				    $title = rawurlencode( get_the_title( $post ) );
+				    $abstract = strip_tags( get_field('abstract'));
+				    
+				?>
 
-				<a href="mailto:<?php echo $pdf;?>" target="_blank">PDF</a>
+				<a href="mailto:?&amp;subject=PsyArt Journal Article: <?php echo $title;?>&amp;body=Abstract:%0A%0A<?php echo $abstract;?>%0A%0A%0A%0AFull Article:%0A%0A<?php echo $link;?>" target="_blank">Email</a>
 				
 				
 				
@@ -36,14 +46,26 @@
 
 				
 			</div>
-		
-		<?php endif;?>
-		
+				
     </header> <!-- end article header -->
 					
     <section class="entry-content" itemprop="text">
-		<?php the_post_thumbnail('full'); ?>
-		<?php the_content(); ?>
+
+		<div class="abstact-wrap">
+			<p>Abstract</p>
+			<?php the_field('abstract');?>
+		</div>	    
+		
+		<div class="keywords-wrap">
+			<span>Keywords:</span> <span><?php the_field('keywords');?></span>
+		</div>
+	    
+	    <div class="read-more-wrap"><a href="#" id="show-full-text">Read Full Text</a></div>
+	    
+		<div class="content-wrap" style="display: none;">
+			<?php the_content(); ?>
+		</div>
+		
 	</section> <!-- end article section -->
 						
 	<footer class="article-footer">
@@ -51,6 +73,5 @@
 		<p class="tags"><?php the_tags('<span class="tags-title">' . __( 'Tags:', 'jointswp' ) . '</span> ', ', ', ''); ?></p>	
 	</footer> <!-- end article footer -->
 						
-	<?php comments_template(); ?>	
 													
 </article> <!-- end article -->

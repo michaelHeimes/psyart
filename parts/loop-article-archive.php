@@ -7,13 +7,13 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(''); ?> role="article">					
 	
 	<header class="article-header">
-		<h2><a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
+		<h2><a class="underline" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a></h2>
 		
 		<div class="byline">
 					
 		<?php 
 			
-			if( !is_author()):
+			if( !is_archive()):
 				the_post();
 			endif;
 						
@@ -25,7 +25,7 @@
 		if ( get_post_meta( get_the_ID() , 'wpb_post_views_count', true) == '') {
 			echo 'Views: (0)' ;                            
 			} else { 
-			echo 'Views: (' . get_post_meta( get_the_ID() , 'wpb_post_views_count', true) . ')'; };
+			echo '(Views: ' . get_post_meta( get_the_ID() , 'wpb_post_views_count', true) . ')'; };
 			
 		?>
 		

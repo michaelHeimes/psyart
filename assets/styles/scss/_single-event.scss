@@ -1,0 +1,32 @@
+.single-event {
+
+	h2 {
+		margin-bottom: 0;
+	}
+	
+	.accordion-item {
+	
+		h2 {
+			margin-bottom: 0;
+		}
+		
+		.heading-copy,
+		.accordion-content {
+			font-size: rem-calc(18);
+		}
+		
+		.accordion-content {
+			padding-top: 1em;
+			padding-bottom: 1em;
+		}
+		
+	&.is-active {
+		a.accordion-title {
+			font-weight: bold;
+		}
+	}
+		
+	
+	}
+	
+}

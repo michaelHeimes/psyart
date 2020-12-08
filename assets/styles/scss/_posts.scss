@@ -1,0 +1,19 @@
+article.article {
+	margin-bottom: 1.5em;
+	
+	.article-header {
+		h2 {
+			margin-bottom: 0;
+		}
+	}
+	
+	p.byline {
+		color: $black;
+		
+		a {
+			color: $black;
+		}
+		
+	}
+		
+}

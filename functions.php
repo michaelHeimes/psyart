@@ -22,6 +22,12 @@ require_once(get_template_directory().'/functions/menu.php');
 // Register sidebars/widget areas
 require_once(get_template_directory().'/functions/sidebar.php'); 
 
+// Register events widget
+require_once(get_template_directory().'/functions/events-widget.php'); 
+
+// Register newsletter widget
+require_once(get_template_directory().'/functions/newsletter-widget.php'); 
+
 // Makes WordPress comments suck less
 require_once(get_template_directory().'/functions/comments.php'); 
 

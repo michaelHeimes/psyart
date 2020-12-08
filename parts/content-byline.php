@@ -16,13 +16,13 @@
 	
 	$volume = substr( $post_date, -2) + 4;?>
 
-	<a href="/<?php echo $year;?>/?post_type=article">Volume <span><?php echo $volume; ?></span> (<?php echo $post_date; ?>)</a>
+	<a href="/<?php echo $year;?>/?post_type=article"><?php echo $post_date; ?></a>
 	
 	<?php
 	if ( get_post_meta( get_the_ID() , 'wpb_post_views_count', true) == '') {
 		echo 'Views: (0)' ;                            
 		} else { 
-		echo 'Views: (' . get_post_meta( get_the_ID() , 'wpb_post_views_count', true) . ')'; };
+		echo '(Views: ' . get_post_meta( get_the_ID() , 'wpb_post_views_count', true) . ')'; };
 	?>
 	
 </p>

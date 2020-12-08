@@ -3,6 +3,89 @@
 Stylesheet: Global Stylesheet
 
 *************************************************/
+.content{
+	padding-top: 1.75em;
+	padding-bottom: 2em;
+
+&.has-sidebar {
+	
+	main {
+		padding-bottom: 3em;
+		
+		@include breakpoint(medium) {
+			border-right: 1px solid $medium-gray;
+		}
+		
+	}
+	
+}
+	
+}
+
+main {
+	@include breakpoint(medium) {
+		min-height: 600px !important;
+	}	
+}
+
+.breadcrumbs {
+	padding-left: 1em;
+	padding-top: 0.8em;
+	a {
+		text-decoration: underline;
+	}
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+::placeholder {
+	color: $black;
+	font-size: rem-calc(14);
+}
+
+.accordion {
+	
+	.accordion-item {
+	
+		.accordion-title {
+			
+		&:before {
+			position: static;
+			margin-right: .4em;
+		}
+		
+		}
+	
+	}
+	
+}
+
+.form-wrap {
+	height: 2em;
+	
+	form {
+		display: flex;
+	
+	input {
+		margin: 0;
+		height: 2em;
+		border-right: 0;
+		box-shadow: 0 0 0;
+	}	
+	
+	button {
+		cursor: pointer;
+		background-color: $white;
+		border: 1px solid #8a8a8a;
+		border-left: 0;
+		flex: 1 1 30px;
+	}
+	
+	}
+	
+}
 
 /*********************
 POSTS & CONTENT STYLES
@@ -18,7 +101,7 @@ POSTS & CONTENT STYLES
 
 // Post meta  
 .byline {
-	color: #999;
+	color: $black;
 	time {}
 }
 
