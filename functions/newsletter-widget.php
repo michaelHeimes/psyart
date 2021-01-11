@@ -1,92 +1,67 @@
 <?php
+/**
+ * Example Widget Class
+ */
 class newsletter_widget extends WP_Widget {
-
-    function __construct() {
-        parent::__construct(
-            'newsletter_widget',
-            __('Newsletter Widget', 'newsletter_widget_domain'),
-            array( 'description' => __( 'Newsletter Signup', 'newsletter_widget_domain' ), )
-        );
+ 
+ 
+    /** constructor -- name this the same as the class above */
+    function newsletter_widget() {
+        parent::WP_Widget(false, $name = 'Example Text Widget');	
     }
-
-    public function widget( $args, $instance ) {
-        $title = apply_filters( 'widget_title', $instance['title'] );
-        $text_two = apply_filters( 'widget_title', $instance['text_two'] );
-
-        echo $args['before_widget'];
-        echo '<div class="widget-wrapper">';
-        if ( ! empty( $title ) )
-            echo $args['before_title'] . $title . $args['after_title'];
-        if ( ! empty( $text_two ) )
-            echo '<p>' . $text_two . '</p>';?>
-            
-<Module>  
-<ModulePrefs title="__UP_title__" directory_title="Google Group Subscribe Button"
-   scrolling="true"
-   height="30"
-   width="290"
-title_url="__UP_titleurl__"
-/>
-
-<UserPref name="title" display_name="title" datatype="string" required="false" default_value="Google Group Subscribe Button" />
-  <Content type="html">
-
-<script type="text/javascript">
-   function msgbox() {   alert("An Invatation to our Google Group has been sent to " + _gel("emailconf").value + ". You will have to confirm the email invitation to join and recieve future emails. You can opt out of our group at anytime using the Unsubscribe link in the email."); }
-</script>
-
-  <form action="https://groups.google.com/group/psyart-email-list/boxsubscribe" id="formconf" onsubmit="msgbox()">
-  Email: <input type=text name=email id="emailconf">
-   <input type="submit" value="Subscribe">
-  </form>
-</Content>
-</Module>
-
-
-			
-		<?php
-        echo '</div>';
-        echo $args['after_widget'];
-    }
-
-    // Widget Backend
-    public function form( $instance ) {
-        if ( isset( $instance[ 'title' ] ) ) {
-            $title = $instance[ 'title' ];
-        }
-        else {
-            $title = __( 'Executive Search', 'newsletter_widget_domain' );
-        }
-
-        if ( isset( $instance[ 'text_two' ] ) ) {
-            $text_two = $instance[ 'text_two' ];
-        }
-        else {
-            $text_two = __( '', 'newsletter_widget_domain' );
-        }
-
-        // Widget admin form
+ 
+    /** @see WP_Widget::widget -- do not rename this */
+    function widget($args, $instance) {	
+        extract( $args );
+        $title 		= apply_filters('widget_title', $instance['title']);
+        $message 	= $instance['message'];
+        $email 		= $instance['email'];
         ?>
-        <p>
-            <label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>" />
-            <br /><br />
-            <label for="<?php echo $this->get_field_id( 'text_two' ); ?>"><?php _e( 'Main text:' ); ?></label>
-            <input class="widefat" id="<?php echo $this->get_field_id( 'text_two' ); ?>" name="<?php echo $this->get_field_name( 'text_two' ); ?>" type="text" value="<?php echo esc_attr( $text_two ); ?>" />
-        </p>
-    <?php
+              <?php echo $before_widget; ?>
+                  <?php if ( $title )
+                        echo $before_title . $title . $after_title; ?>
+							<p>
+								<?php echo $message; ?>
+							</p>
+							<p><a href="mailto:<?php echo $email; ?>"><?php echo $email; ?></a></p>
+              <?php echo $after_widget; ?>
+        <?php
     }
-
-    // Updating widget replacing old instances with new
-    public function update( $new_instance, $old_instance ) {
-        $instance = array();
-        $instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-        $instance['text_two'] = ( ! empty( $new_instance['text_two'] ) ) ? strip_tags( $new_instance['text_two'] ) : '';
+ 
+    /** @see WP_Widget::update -- do not rename this */
+    function update($new_instance, $old_instance) {		
+		$instance = $old_instance;
+		$instance['title'] = strip_tags($new_instance['title']);
+		$instance['message'] = strip_tags($new_instance['message']);
+		$instance['email'] = strip_tags($new_instance['email']);
         return $instance;
     }
-}
-
-function executive_load_widget() {
-    register_widget( 'newsletter_widget' );
-}
-add_action( 'widgets_init', 'executive_load_widget' );
+ 
+    /** @see WP_Widget::form -- do not rename this */
+    function form($instance) {	
+ 
+        $title 		= esc_attr($instance['title']);
+        $message	= esc_attr($instance['message']);
+        $email	= esc_attr($instance['email']);
+        ?>
+         <p>
+          <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:'); ?></label> 
+          <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo $title; ?>" />
+        </p>
+       
+		<p>
+          <label for="<?php echo $this->get_field_id('message'); ?>"><?php _e('Simple Message'); ?></label> 
+          <input class="widefat" id="<?php echo $this->get_field_id('message'); ?>" name="<?php echo $this->get_field_name('message'); ?>" type="text" value="<?php echo $message; ?>" />
+        </p>
+        
+		<p>
+          <label for="<?php echo $this->get_field_id('email'); ?>"><?php _e('Email'); ?></label> 
+          <input class="widefat" id="<?php echo $this->get_field_id('email'); ?>" name="<?php echo $this->get_field_name('email'); ?>" type="text" value="<?php echo $email; ?>" />
+        </p> 
+        
+        <?php 
+    }
+ 
+ 
+} // end class newsletter_widget
+add_action('widgets_init', create_function('', 'return register_widget("newsletter_widget");'));
