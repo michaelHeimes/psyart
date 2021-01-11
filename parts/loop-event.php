@@ -54,7 +54,7 @@
 					</li>
 					<?php endif;?>
 	
-					<?php if($papers = get_field('about')):?>
+					<?php if($papers = get_field('papers')):?>
 					<li class="accordion-item" data-accordion-item>	    
 						<a href="#" class="accordion-title">Papers</a>
 							    

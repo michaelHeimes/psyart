@@ -18,13 +18,33 @@ class newsletter_widget extends WP_Widget {
         if ( ! empty( $title ) )
             echo $args['before_title'] . $title . $args['after_title'];
         if ( ! empty( $text_two ) )
-            echo '<p>' . $text_two . '</p>';
+            echo '<p>' . $text_two . '</p>';?>
             
-			echo '<form action="">';
-			echo '<input type="text" id="email" name="email" placeholder="Email address">';
-			echo '<input type="submit" value="Submit">';
-			echo '</form>';
+<Module>  
+<ModulePrefs title="__UP_title__" directory_title="Google Group Subscribe Button"
+   scrolling="true"
+   height="30"
+   width="290"
+title_url="__UP_titleurl__"
+/>
 
+<UserPref name="title" display_name="title" datatype="string" required="false" default_value="Google Group Subscribe Button" />
+  <Content type="html">
+
+<script type="text/javascript">
+   function msgbox() {   alert("An Invatation to our Google Group has been sent to " + _gel("emailconf").value + ". You will have to confirm the email invitation to join and recieve future emails. You can opt out of our group at anytime using the Unsubscribe link in the email."); }
+</script>
+
+  <form action="https://groups.google.com/group/psyart-email-list/boxsubscribe" id="formconf" onsubmit="msgbox()">
+  Email: <input type=text name=email id="emailconf">
+   <input type="submit" value="Subscribe">
+  </form>
+</Content>
+</Module>
+
+
+			
+		<?php
         echo '</div>';
         echo $args['after_widget'];
     }
