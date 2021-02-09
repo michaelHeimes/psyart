@@ -4,20 +4,22 @@
  */
 
 get_header(); ?>
-
-<div class="grid-container">
-	<div class="grid-x grid-padding-x">
-		<div class="breadcrumbs cell small-12">
-			<a href="<?php echo home_url();?>">Home</a> > <a href="<?php echo home_url(); ?>/news-events/">News + Events</a> > <span><?php the_title();?></span>
-		</div>		
-	</div>
-</div>		
 			
 <div class="content">
 	<div class="grid-container">
 		<div class="inner-content grid-x grid-padding-x">
+			
+			<?php get_template_part('parts/loop', 'page-header');?>
+			
+			<?php if( has_term( 'news', 'types' )):?>
+
+			<main class="main small-12 cell" role="main">
 	
-			<main class="main cell small-12 medium-10 large-9" role="main">
+			<?php else:?>
+	
+			<main class="main small-12 large-8 medium-8 cell" role="main">
+				
+			<?php endif;?>
 							
 			    <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 			
@@ -32,6 +34,11 @@ get_header(); ?>
 			    <?php endif; ?>
 	
 			</main> <!-- end #main -->
+			
+			
+			<?php if( !has_term( 'news', 'types' )):?>
+				<?php get_sidebar(); ?>
+			<?php endif;?>
 	
 		</div> <!-- end #inner-content -->
 	</div>

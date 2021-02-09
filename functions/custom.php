@@ -51,3 +51,40 @@ function custom_post_author_archive($query) {
     remove_action( 'pre_get_posts', 'custom_post_author_archive' );
 }
 add_action('pre_get_posts', 'custom_post_author_archive'); 
+
+
+// Create a URL for filtering press releases by year.
+function press_releases_rewrite_rules() {
+  add_rewrite_rule(
+    'articles/([0-9]{4})/?$',
+    array(
+      'year_filter' => '$matches[1]',
+      'post_type'   => 'article',
+    ),
+    'top'
+  );
+}
+add_action( 'init', 'press_releases_rewrite_rules', 11, 0 );
+
+// Register the 'year_filter' query variable so we can filter by it.
+function register_year_filter_query_var( $vars ) {
+  $vars[] = 'year_filter';
+  return $vars;
+}
+add_filter( 'query_vars', 'register_year_filter_query_var' );
+
+// Alter WP query to support year filter for press releases and media coverage.
+function add_year_filter_to_articles( $query ) {
+  // Exit if this is the admin, not the main query, or not a press release query.
+  if ( is_admin()
+    || ! $query->is_main_query() 
+    || empty( get_query_var( 'post_type' ) )
+    || 'article' !== get_query_var( 'post_type' ) ) {
+    return;
+  }
+
+  if ( ! empty( get_query_var( 'year_filter' ) ) ) {
+    set_query_var( 'year', get_query_var( 'year_filter' ) );
+  }
+}
+add_filter( 'pre_get_posts', 'add_year_filter_to_articles' );

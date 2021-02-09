@@ -7,61 +7,165 @@
 
 get_header(); ?>
 	
-	<div class="content grid-container">
+	<div class="content">
 	
-		<div class="inner-content grid-x grid-padding-x">
+		<div class="inner-content">
 	
-		    <main class="main small-12 large-8 medium-8 cell" role="main">
-			    
-			    <?php echo '<h1><span><strong>' . get_bloginfo( "name" ) . '</strong></span> ' . get_bloginfo( "description" ) .  '</h1>' ;
-				    $getdate = getdate();
-				    $year = date('Y');
-				    $volume = substr( $year, -2) + 4;
-			    ?>
-			    
-			    <h2 class="current-title">Current: <?php echo 'Volume ' . $volume . ' (' .  $year . ')'?></h2>
-			    
-			    <h2 class="recent-title">Most Recent Article:</h2>
-			    
-			   <?php 
-				   $args = array(
-				    'posts_per_page' => -1,
-				    'post_type' => 'article',
-			        'post_status' => 'publish',
-			        'posts_per_page' => -1, 
-					    'date_query' => array(
-					        array(
-					            'year'  => $getdate["year"]
-					        ),
-						),
-				);
+			<main class="main" role="main">
+					    
+			    <section class="intro">
+					<div class="grid-container">
+						<div class="grid-x grid-padding-x align-middle">
+							
+							<div class="copy-wrap cell small-12 medium-auto large-9">
 				
-				$wpquery = new WP_Query($args);
-				$posts = $wpquery->get_posts();
-				$ordered_posts = array();
-				
-				foreach ($posts as $post) {
-				    $year = get_the_date('Y');
-				    $ordered_posts[$year][] = $post;
-				}
-				;
-				
-				foreach ($ordered_posts as $post_date => $posts) { 
-					$volume = substr( $post_date, -2) + 4;
-
-		        foreach ($posts as $post):
-		        
-					get_template_part( 'parts/loop', 'archive' );
-		            
-		        endforeach;
+							    <?php if( $intro_copy = get_field('intro_copy') ):?>
+							    <?php echo $intro_copy;?>
+							    <?php endif;?>
+					    
+							</div>
+							
+							<div class="cell small-12 medium-shrink large-3">
+								
+								<?php 
+								$link = get_field('cta_link');
+								if( $link ): 
+								    $link_url = $link['url'];
+								    $link_title = $link['title'];
+								    $link_target = $link['target'] ? $link['target'] : '_self';
+								    ?>
+								    <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+								<?php endif; ?>
+								
+							</div>
+							
+						</div>
+					</div>
+			    </section>
+			    
+			    <section class="home-nav">
+					<div class="grid-container">
+						<div class="card-wrap grid-x grid-padding-x small-up-1 medium-up-3">
+							
+							<div class="cell">
+								
+								<div class="inner text-center">
+								
+									<div class="icon-wrap text-center">
+							    		<i class="fas fa-book-reader"></i>
+									</div>
+									
+									<div class="bottom">
+										
+										<?php 
+											$current_vol_year = get_field('current_archive_year');
+											$volume = substr( $current_vol_year, -2) + 4;
+											
+											echo '<h3>Current: Volume ' . $volume . ' (' .  $current_vol_year . ')</h3>';
+											
+										?>
+										
+										<div>
+											<a class="underline" href="<?php get_home_url();?>/articles/<?php echo $current_vol_year;?>" rel="bookmark" title="<?php the_title_attribute(); ?>">View most recent article</a>
+										</div>	
+	
+									</div>
+									
+								</div>
+								
+							</div>
+							
+							<div class="cell">
+								
+								<div class="inner text-center">
+								
+									<div class="icon-wrap text-center">
+							    		<i class="fas fa-book-open"></i>
+									</div>
+									
+									<div class="bottom">
+										<h3>All Articles 2013 - Present</h3>
+										
+										<div>
+											<a class="underline" href="<?php echo home_url(); ?>/all-articles/">Visit all articles</a>
+										</div>
+										
+									</div>
+								
+								</div>
+								
+							</div>
+							
+							<div class="cell">
+								
+								<div class="inner text-center">
+								
+									<div class="icon-wrap text-center">
+							    		<i class="fas fa-bookmark"></i>
+									</div>
+									
+									<div class="bottom">
+										<h3>Archived Journal Volumes</h3>
+										
+										<div>
+											
+										<?php 
+										$link = get_field('archived_journal_volumes_link');
+										if( $link ): 
+										    $link_url = $link['url'];
+										    $link_title = $link['title'];
+										    $link_target = $link['target'] ? $link['target'] : '_self';
+										    ?>
+										    <a class="underline" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+										<?php endif; ?>
+																					
+										</div>
+										
+									</div>	
+									
+								</div>							
+								
+							</div>
+							
+						</div>
+					</div>
+			    </section>
+			    
+			    <?php if( get_field('add_call_to_action')):?>
+			    <section class="cta">
+					<div class="grid-container">
+						<div class="grid-x grid-margin-x">
+							<div class="cell small-12">				    
 				    
-				}
-				
-				?>
-			    						
+								<?php if( have_rows('call_to_action') ):?>
+									<?php while ( have_rows('call_to_action') ) : the_row();?>	
+								
+									<div class="copy-wrap">
+										<?php the_sub_field('copy');?>
+									</div>
+									
+									<?php 
+									$link = get_sub_field('link');
+									if( $link ): 
+									    $link_url = $link['url'];
+									    $link_title = $link['title'];
+									    $link_target = $link['target'] ? $link['target'] : '_self';
+									    ?>
+									<div>
+									    <a class="button" href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+									</div>
+									<?php endif; ?>									
+								
+									<?php endwhile;?>
+								<?php endif;?>
+				    
+							</div>
+						</div>
+					</div>
+			    </section>
+			    <?php endif;?>
+					    						
 			</main> <!-- end #main -->
-
-		    <?php get_sidebar(); ?>
 		    
 		</div> <!-- end #inner-content -->
 

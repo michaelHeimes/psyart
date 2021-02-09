@@ -12,11 +12,7 @@ jQuery(function($) {
 		});
 		
 	}
-	
-	if ( $('.sidebar').length ) {
-		$('.content').addClass('has-sidebar');	
-	};
-	
+		
 	if ( $('body').hasClass('single-article')) {
 		$('#main-nav li.articles').addClass('current-menu-item');
 	};

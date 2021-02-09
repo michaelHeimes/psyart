@@ -37,8 +37,11 @@ require_once(get_template_directory().'/functions/page-navi.php');
 // Adds support for multiple languages
 require_once(get_template_directory().'/functions/translation/translation.php'); 
 
+// Adds Font Awesome Fonts
+require_once(get_template_directory().'/functions/font-awesome.php'); 
+
 // Adds site styles to the WordPress editor
-// require_once(get_template_directory().'/functions/editor-styles.php'); 
+require_once(get_template_directory().'/functions/editor-styles.php'); 
 
 // Remove Emoji Support
 // require_once(get_template_directory().'/functions/disable-emoji.php'); 

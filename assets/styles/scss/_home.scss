@@ -1,26 +1,67 @@
-.home {
+.page-template-page-template-home {
 	
-	h1 {
-		text-transform: lowercase;
-		margin-bottom: 26px;
+	.intro {
+		padding-bottom: .8em;
 		
-		strong {
-			text-transform: none;
+		.copy-wrap {
+			padding-top: .85em;
 		}
 		
 	}
 	
-	h2 {
-	
-	&.current-title {
-		margin-bottom: 26px;
+	.home-nav {
+		background-color: $light-gray;
+		
+		.card-wrap {
+		    padding-top: 2em;
+			padding-bottom: 1.35em;
+			
+			
+			.cell {
+				margin-bottom: 2em;
+				
+				.inner {
+					height: 100%;
+					background-color: $white;
+					border: $border;	
+					padding: 2.5em .9em 3em;						
+					.icon-wrap {
+						margin-bottom: 3em;
+						
+						i {
+							color: $lilac;
+							font-size: 70px;
+						}	
+					}
+					
+					.bottom {
+						
+						a {
+							color: $black;
+						}
+						
+					}
+				
+				}
+			
+			}
+			
+		}
+		
 	}
 	
-	&.recent-title {
-    	margin-bottom: 0;
+	.cta {
+		padding-top: 1.5em;
+		
+		.grid-x {
+			
+			.cell {
+				padding-bottom: .55em;
+				border-bottom: 1px solid $dark-gray;
+			}
+			
+		}
+		
 	}
-	
-	}
-	
 	
 }

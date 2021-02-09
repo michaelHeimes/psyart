@@ -18,8 +18,19 @@
 		    					</nav>
 		    				</div>
 							
-							<div class="small-12 medium-12 large-12 cell">
-								<p class="source-org copyright">&copy; <?php echo date('Y'); ?> <?php bloginfo('name'); ?>.</p>
+							<div class="small-12 medium-12 large-12 cell text-center">
+								<div class="source-org copyright"><?php bloginfo('name'); ?> 1997-<?php echo date('Y'); ?> | 
+								<?php 
+								$link = get_field('privacy_link', 'option');
+								if( $link ): 
+								    $link_url = $link['url'];
+								    $link_title = $link['title'];
+								    $link_target = $link['target'] ? $link['target'] : '_self';
+								    ?>
+								    <a href="<?php echo esc_url( $link_url ); ?>" target="<?php echo esc_attr( $link_target ); ?>"><?php echo esc_html( $link_title ); ?></a>
+								<?php endif; ?>
+								
+								</div>
 							</div>
 						
 						</div> <!-- end #inner-footer -->

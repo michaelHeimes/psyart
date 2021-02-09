@@ -7,7 +7,7 @@ class newsletter_widget extends WP_Widget {
  
     /** constructor -- name this the same as the class above */
     function newsletter_widget() {
-        parent::WP_Widget(false, $name = 'Example Text Widget');	
+        parent::WP_Widget(false, $name = 'Newsletter Widget');	
     }
  
     /** @see WP_Widget::widget -- do not rename this */

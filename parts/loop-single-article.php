@@ -9,21 +9,15 @@
 <!-- 	<?php wp_get_archives(array('post_type'=>'article', 'type'=>'yearly'));?> -->
 						
 	<header class="article-header">	
-		<h1 class="entry-title single-title" itemprop="headline"><?php the_title(); ?></h1>
+
 		<?php get_template_part( 'parts/content', 'byline' ); ?>
 		
 			<div class="doc-tabs">
 				
 				<?php if($pdf =  get_field('pdf') ):?>
 				
-				<a href="<?php echo $pdf;?>" target="_blank">
-					PDF
-				</a>
-				|
-				<a href="#" type="button" onclick="printJS('<?php echo $pdf;?>')">
-					Print
-			    </a>
-			    |
+				<a href="<?php echo $pdf;?>" target="_blank">PDF</a><span> | </span>
+				<a href="#" type="button" onclick="printJS('<?php echo $pdf;?>')">Print</a><span> | </span>
 			    <?php endif;?>
 			    
 			    <?php 
@@ -35,16 +29,6 @@
 				?>
 
 				<a href="mailto:?&amp;subject=PsyArt Journal Article: <?php echo $title;?>&amp;body=Abstract:%0A%0A<?php echo $abstract;?>%0A%0A%0A%0AFull Article:%0A%0A<?php echo $link;?>" target="_blank">Email</a>
-				
-				
-				
-<!--
-						<a class="c-shares__method o-button o-button--unstyled u-text--heading-tiny" href="mailto:?&amp;subject=Blog post: <?php echo $title . ', from ' .  $yoast_primary;?>&amp;body=<?php echo $yoast_primary;?>%0D%0A %0D%0A<?php echo $title?>%0D%0A %0D%0A<?php echo $excerpt; ?>... %0A%0A Read More: <?php echo $url_link; ?>" target="_blank">
-			<span class="screen-reader-text">Share via email</span><i class="fas fa-envelope"></i>
-		</a>
--->
-
-				
 			</div>
 				
     </header> <!-- end article header -->

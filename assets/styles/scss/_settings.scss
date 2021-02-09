@@ -69,6 +69,11 @@ $header-blue: #3840ca;
 $heading-blue: #1c4587;
 $link-blue: #1b4a84;
 
+$brand-primary: #3840CB;
+$lilac: #5A66D6;
+
+$border: 1px solid #B1B1B1;
+
 // 1. Global
 // ---------
 
@@ -82,10 +87,10 @@ $foundation-palette: (
   warning: #ffae00,
   alert: #cc4b37,
 );
-$light-gray: #e6e6e6;
-$medium-gray: #8a8a8a;
-$dark-gray: #595959;
-$black: #000000;
+$light-gray: #ECECEC;
+$medium-gray: #B1B1B1;
+$dark-gray: #979797;
+$black: #1D1D1D;
 $white: #ffffff;
 $body-background: $white;
 $body-font-color: $black;
@@ -115,12 +120,13 @@ $print-hrefs: true;
 $breakpoints: (
   small: 0,
   medium: 640px,
+  tablet: 900px,
   large: 1024px,
   xlarge: 1200px,
   xxlarge: 1440px,
 );
 $print-breakpoint: large;
-$breakpoint-classes: (small medium large);
+$breakpoint-classes: (small medium tablet large);
 
 // 3. The Grid
 // -----------
@@ -147,17 +153,17 @@ $header-lineheight: 1.4;
 $header-margin-bottom: 0.5rem;
 $header-styles: (
   small: (
-    'h1': ('font-size': 20),
-    'h2': ('font-size': 20),
+    'h1': ('font-size': 22),
+    'h2': ('font-size': 22),
     'h3': ('font-size': 19),
     'h4': ('font-size': 18),
     'h5': ('font-size': 17),
     'h6': ('font-size': 16),
   ),
   medium: (
-    'h1': ('font-size': 23),
-    'h2': ('font-size': 22),
-    'h3': ('font-size': 19),
+    'h1': ('font-size': 24),
+    'h2': ('font-size': 24),
+    'h3': ('font-size': 18),
     'h4': ('font-size': 25),
     'h5': ('font-size': 20),
     'h6': ('font-size': 16),
@@ -213,7 +219,7 @@ $subheader-lineheight: 1.4;
 $subheader-color: $dark-gray;
 $subheader-font-weight: $global-weight-normal;
 $subheader-margin-top: 0.2rem;
-$subheader-margin-bottom: 0.5rem;
+$subheader-margin-bottom: 0.28rem;
 $stat-font-size: 2.5rem;
 
 // 6. Abide
@@ -234,12 +240,12 @@ $accordion-background: $white;
 $accordion-plusminus: true;
 $accordion-title-font-size: rem-calc(18);
 $accordion-item-color: $body-font-color;
-$accordion-item-background-hover: $light-gray;
-$accordion-item-padding: .25rem;
+$accordion-item-background-hover: $white;
+$accordion-item-padding: .5em .6em;
 $accordion-content-background: $white;
 $accordion-content-border: 0px solid $light-gray;
 $accordion-content-color: $body-font-color;
-$accordion-content-padding: 0;
+$accordion-content-padding: .5em 1.65em;
 
 // 8. Accordion Menu
 // -----------------
@@ -286,15 +292,15 @@ $breadcrumbs-item-separator-color: $medium-gray;
 // 11. Button
 // ----------
 
-$button-font-family: inherit;
-$button-padding: 0.85em 1em;
+$button-font-family: $header-font-family;
+$button-padding: 1.042em 2.174em;
 $button-margin: 0 0 $global-margin 0;
 $button-fill: solid;
-$button-background: $primary-color;
-$button-background-hover: scale-color($button-background, $lightness: -15%);
+$button-background: $lilac;
+$button-background-hover: $brand-primary;
 $button-color: $white;
 $button-color-alt: $black;
-$button-radius: $global-radius;
+$button-radius: 4px;
 $button-hollow-border-width: 1px;
 $button-sizes: (
   tiny: 0.6rem,
@@ -306,7 +312,7 @@ $button-palette: $foundation-palette;
 $button-opacity-disabled: 0.25;
 $button-background-hover-lightness: -20%;
 $button-hollow-hover-lightness: -50%;
-$button-transition: background-color 0.25s ease-out, color 0.25s ease-out;
+$button-transition: all 0.25s ease;
 $button-responsive-expanded: false;
 
 // 12. Button Group
@@ -853,7 +859,7 @@ $tooltip-radius: $global-radius;
 // -----------
 
 $topbar-padding: 0.5rem;
-$topbar-background: $header-blue;
+$topbar-background: $white;
 $topbar-submenu-background: $topbar-background;
 $topbar-title-spacing: 0.5rem 1rem 0.5rem 0;
 $topbar-input-width: 200px;
@@ -866,8 +872,8 @@ $xy-grid: true;
 $grid-container: $global-width;
 $grid-columns: 12;
 $grid-margin-gutters: (
-  small: 20px,
-  medium: 30px
+  small: 32px,
+  medium: 32px
 );
 $grid-padding-gutters: $grid-margin-gutters;
 $grid-container-padding: $grid-padding-gutters;

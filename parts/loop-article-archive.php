@@ -13,20 +13,14 @@
 					
 		<?php 
 			
+/*
 			if( !is_archive()):
 				the_post();
 			endif;
-						
-			the_author(); /* the_author_posts_link(); */ ?> | <?php $post_date = get_the_date( 'F j, Y' ); echo $post_date; ?>
+*/
 			
-			
-		<?php
-			
-		if ( get_post_meta( get_the_ID() , 'wpb_post_views_count', true) == '') {
-			echo 'Views: (0)' ;                            
-			} else { 
-			echo '(Views: ' . get_post_meta( get_the_ID() , 'wpb_post_views_count', true) . ')'; };
-			
+
+			get_template_part( 'parts/content', 'byline' );
 		?>
 		
 		</div>

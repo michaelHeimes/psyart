@@ -6,18 +6,14 @@
  */
 
 get_header(); ?>
-
-	<div class="grid-container">
-		<div class="grid-x grid-padding-x">
-			<div class="breadcrumbs cell small-12">
-				<a href="<?php echo home_url();?>">Home</a> > <span><?php the_title();?></span>
-			</div>		
-		</div>
-	</div>	
 	
 	<div class="content">
 		<div class="grid-container">
 			<div class="inner-content grid-x grid-padding-x">
+				
+				<?php get_template_part('parts/loop', 'breadcrumbs');?>
+		
+				<?php get_template_part('parts/loop', 'page-header');?>
 		
 			    <main class="main small-12 cell" role="main">
 				    

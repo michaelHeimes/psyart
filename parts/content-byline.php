@@ -5,10 +5,16 @@
 ?>
 
 <p class="byline">
-	<?php	
-	printf( __( '%1$s |', 'jointswp' ),
-		get_the_author_posts_link(),
-	);
+	
+	<?php if( $author = get_field('authors_name') ):?>
+	
+		<?php echo $author;?> |
+	
+	<?php else:?>
+		
+		<?php the_author();?> | 
+	
+	<?php endif;
 
 	$year = get_the_date('Y');
 	$ordered_posts[$year][] = $post;

@@ -12,10 +12,19 @@ get_header(); ?>
 		<div class="grid-container">
 	
 			<div class="inner-content grid-x grid-padding-x">
+				
+				<?php get_template_part('parts/loop', 'breadcrumbs');?>
+		
+				<?php get_template_part('parts/loop', 'page-header');?>
 		
 			    <main class="main small-12 large-8 medium-8 cell" role="main">
 				    
 				    <?php the_content();?>
+				    
+				    <?php if($form_id = get_field('contact_form_id')):?>
+						<?php gravity_form( $form_id, false, false, false, '', true );?>
+					<?php endif;?>
+							
 					          
 				    </ul>
 	 						    					

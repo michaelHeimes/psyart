@@ -66,17 +66,7 @@ if ($queryEvent->have_posts()) :
 		
 		<section>
 			
-			<a href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">
-				
-				<?php if(has_term( 'news', 'types' )):?>
-					>> <span class="underline">Read More</span>
-				<?php endif;?>
-
-				<?php if(has_term( 'events', 'types' )):?>
-					>> <span class="underline">Event Details</span>
-				<?php endif;?>
-				
-			</a>
+			<a class="button" href="<?php the_permalink() ?>" rel="bookmark" title="<?php the_title_attribute(); ?>">Read More</a>
 			
 		</section>
 		
